@@ -1,6 +1,7 @@
-var saveButtonEL = $("button");
+var saveButtonEL = $(".btn-primary");
 var calendarRow = $('textarea')
 var timerEL = $("#currentDay");
+var clearEL = $("#clear")
 var startingTime = moment();
 timerEL.text(startingTime.format("dddd, MMMM Do YYYY hh:mm:ssa"));
 
@@ -79,12 +80,30 @@ function setCurrentTime () {
 
 }
 
+function clearScheduele () {
+
+    getCurrentTextEL = $('textarea');
+
+    for (i=0; i < getCurrentTextEL.length; i++) {
+
+        var currentRow = $(calendarRow[i]);
+
+        currentRow.val("");
+
+    };
+
+    localStorage.clear();
+
+
+}
+
 function init() {
     setStartingText();
     setColourBlock()
     saveButtonEL.on("click", handleSave);
     setInterval(setCurrentTime, 1000);
     setInterval(setColourBlock, 1000);
+    clearEL.on("click", clearScheduele);
 };
 
 init();
